@@ -1,4 +1,5 @@
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 public class test2 {
-    //boolean is used to validation
+    //boolean pump is used to validation
     public static Boolean[] pump1 = new Boolean[6];
     public static Boolean[] pump2 = new Boolean[6];
     public static Boolean[] pump3 = new Boolean[6];
@@ -18,6 +19,11 @@ public class test2 {
     public static String[][] SecondName = new String[5][6];
     public static String[][] VehicleNo = new String[5][6];
     public static Double[][] NumLiters = new Double[5][6];
+
+    public  static ArrayList<String> QueueFirstName= new ArrayList<String>();
+    public  static ArrayList<String> QueueSecondName= new ArrayList<String>();
+    public  static ArrayList<String> QueueVehicleNo= new ArrayList<String>();
+    public  static ArrayList<Double> QueueNumLiters= new ArrayList<Double>();
     public static int low[] = new int[5];
 
     public static Scanner scanner = new Scanner(System.in);
@@ -33,12 +39,12 @@ public class test2 {
     public static boolean loop = true;
 
     public static void main(String[] args){
-
+        menu();
         LOOP();
     }
 
     public  static void LOOP() {
-        menu();
+
 
         System.out.println("\n pls choose an option ");
         String choice = scanner.nextLine();
@@ -56,6 +62,7 @@ public class test2 {
             case 10-> IFQ();
             case 11 -> EXT();
             case 100 -> System.out.println("\n you have selected a wrong option !");
+
         }
         if(loop){
             LOOP();
@@ -131,11 +138,33 @@ public class test2 {
 
         int in = 0;
         int out = 0;
-
         SortLow();
         System.out.println("Add customer to a Queue");
         if(count1==6 && count2==6 && count3==6 && count4==6 && count5==6) {
             System.out.println("All the pumps are full");
+            System.out.println("You are been added to the waiting list.");
+            System.out.println("pls enter customer First name");
+            String name = scanner.nextLine();
+            QueueFirstName.add(name);
+            System.out.println("pls enter customer Second name");
+            name = scanner.nextLine();
+            QueueSecondName.add(name);
+            System.out.println("pls enter customer Vehicle number ");
+            String Vnum = scanner.nextLine();
+            QueueVehicleNo.add(Vnum);
+            System.out.println("pls enter  number of liters that the customer wants to buy? ");
+            double num = scanner.nextDouble();
+            QueueNumLiters.add(num);
+            int size=QueueFirstName.size()-1;
+            System.out.println("a customer "+QueueFirstName.get(size)+" "+QueueFirstName.get(size)+ " is added to waiting list in "+size+" position.");
+
+
+
+
+
+
+
+
         }else if((count1==low[0] && count2==low[0] && count3==low[0] && count4==low[0] && count5==low[0])){
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[0][in], null)) {
@@ -326,6 +355,41 @@ public class test2 {
                 }
 
             }
+            for (int inLoop =0; inLoop < 6; inLoop++) {
+                if (FirstName[out][inLoop] == null) {
+                    for (int Loop =0; Loop < (QueueFirstName.size()); Loop++){
+                        if (QueueFirstName.get(Loop)!= null) {
+                                FirstName[out][inLoop]=QueueFirstName.get(Loop);
+                            QueueFirstName.remove(Loop);
+
+                            SecondName[out][inLoop]=QueueSecondName.get(Loop);
+                            QueueSecondName.remove(Loop);
+
+                            VehicleNo[out][inLoop]=QueueVehicleNo.get(Loop);
+                            QueueVehicleNo.remove(Loop);
+
+                            NumLiters[out][inLoop]=QueueNumLiters.get(Loop);
+                            QueueVehicleNo.remove(Loop);
+                            break;
+                        }
+                    }
+                }
+            }
+            if(out==0){
+                count1-=1;
+            }else if(out==1){
+                count2-=1;
+            }else if(out==2){
+                count3-=1;
+            }else if(out==3){
+                count4-=1;
+            }else if(out==4){
+                count5-=1;
+            }
+
+
+
+
         }
 
     }
@@ -388,6 +452,39 @@ public class test2 {
                         }
 
                     }
+                    for (int inLoop =0; inLoop < 6; inLoop++) {
+                        if (FirstName[out][inLoop] == null) {
+                            for (int Loop =0; Loop < (QueueFirstName.size()); Loop++){
+                                if (QueueFirstName.get(Loop)!= null) {
+                                    FirstName[out][inLoop]=QueueFirstName.get(Loop);
+                                    QueueFirstName.remove(Loop);
+
+                                    SecondName[out][inLoop]=QueueSecondName.get(Loop);
+                                    QueueSecondName.remove(Loop);
+
+                                    VehicleNo[out][inLoop]=QueueVehicleNo.get(Loop);
+                                    QueueVehicleNo.remove(Loop);
+
+                                    NumLiters[out][inLoop]=QueueNumLiters.get(Loop);
+                                    QueueVehicleNo.remove(Loop);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if(out==0){
+                        count1-=1;
+                    }else if(out==1){
+                        count2-=1;
+                    }else if(out==2){
+                        count3-=1;
+                    }else if(out==3){
+                        count4-=1;
+                    }else if(out==4){
+                        count5-=1;
+                    }
+
+
                 } else {
                     System.out.println("pump " + out + " has no customers.");
                 }
