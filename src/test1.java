@@ -1,51 +1,55 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.ArrayList;
 public class test1 {
-    public static void main(String[] args){
-        int low[]=new int[5];
-        int count1=3;
-        int count2=6;
-        int count3=1;
-        int count4=9;
-        int count5=0;
-
-        low[0] = count1;
-        low[1] = count2;
-        low[2] = count3;
-        low[3] = count4;
-        low[4] = count5;
-
-        int count = 0;
-        int temp = 0;
-        boolean fo = true;
-        while (fo) {
-            if(low[0]>low[1]){
-                temp = low[0];
-                low[0] = low[1];
-                low[1] = temp;
-            }
-            if(low[1]>low[2]){
-                temp = low[2];
-                low[2] = low[1];
-                low[1] = temp;
-            }
-            if(low[2]>low[3]){
-                temp = low[2];
-                low[2] = low[3];
-                low[3] = temp;
-            }if(low[3]>low[4]){
-                temp = low[3];
-                low[3] = low[4];
-                low[4] = temp;
-            }
-            count++;
-            if (25== count) {
-                fo = false;
-            }
-
-        }
-        System.out.println(low[0]);
-        System.out.println(low[1]);
-        System.out.println(low[2]);
-        System.out.println(low[3]);
-        System.out.println(low[4]);
+    public  static ArrayList<String> QueueFirstName= new ArrayList<String>();
+    public  static ArrayList<String> QueueSecondName= new ArrayList<String>();
+    public  static ArrayList<String> QueueVehicleNo= new ArrayList<String>();
+    public  static ArrayList<Integer> QueueNumLiter= new ArrayList<Integer>();
+    public  static Scanner scanner=new Scanner(System.in);
+    public static void main(String[] args) {
+        val2();
     }
+
+    public static void validation(){
+        try {
+            System.out.println("input num");
+            double num = scanner.nextDouble();
+        }
+        catch (InputMismatchException nfe){
+            System.out.println("you entered a wrong input");
+            validation();
+        }
+    }
+    public static void val(){
+        double num;
+        try{
+            num = scanner.nextDouble();
+        }catch (InputMismatchException nfe){
+            System.out.println("you entered a wrong input");
+            val();
+        }
+    }
+    public static void val2() {
+
+
+        do{
+            System.out.println("pls enter  number of liters that the customer wants to buy? ");
+            String num = scanner.nextLine();
+            try
+            {
+                Double.parseDouble(num);
+                double numInt=Double.parseDouble(num);
+
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println(num + " is not a valid input !");
+            }
+        }while(true);
+    }
+
+
+
 }

@@ -152,9 +152,23 @@ public class test2 {
             System.out.println("pls enter customer Vehicle number ");
             String Vnum = scanner.nextLine();
             QueueVehicleNo.add(Vnum);
-            System.out.println("pls enter  number of liters that the customer wants to buy? ");
-            double num = scanner.nextDouble();
-            QueueNumLiters.add(num);
+
+            do{
+                System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                String num = scanner.nextLine();
+                try
+                {
+                    Double.parseDouble(num);
+                    double numD=Double.parseDouble(num);
+                    QueueNumLiters.add(numD);
+                    break;
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println(num + " is not a valid input !");
+                }
+            }while(true);
+
             int size=QueueFirstName.size()-1;
             System.out.println("a customer "+QueueFirstName.get(size)+" "+QueueFirstName.get(size)+ " is added to waiting list in "+size+" position.");
 
@@ -177,9 +191,23 @@ public class test2 {
                     System.out.println("pls enter customer Vehicle number ");
                     String Vnum = scanner.nextLine();
                     VehicleNo[0][in]=Vnum;
-                    System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                    double num = scanner.nextDouble();
-                    NumLiters[0][in]=num;
+
+                    do{
+                        System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                        String num = scanner.nextLine();
+                        try
+                        {
+                            Double.parseDouble(num);
+                            double numD=Double.parseDouble(num);
+                            NumLiters[0][in]=numD;
+                            break;
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(num + " is not a valid input !");
+                        }
+                    }while(true);
+
                     count1+=1;
                     pump1[in]=true;
                     System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is added to pump  0, row " + in+ ".");
@@ -200,9 +228,23 @@ public class test2 {
                     System.out.println("pls enter customer Vehicle number ");
                     String Vnum = scanner.nextLine();
                     VehicleNo[0][in]=Vnum;
-                    System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                    double num = scanner.nextDouble();
-                    NumLiters[0][in]=num;
+
+                    do{
+                        System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                        String num = scanner.nextLine();
+                        try
+                        {
+                            Double.parseDouble(num);
+                            double numD=Double.parseDouble(num);
+                            NumLiters[0][in]=numD;
+                            break;
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(num + " is not a valid input !");
+                        }
+                    }while(true);
+
                     count1+=1;
                     pump1[in]=true;
                     System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is added to pump  0, row " + in+ ".");
@@ -221,9 +263,23 @@ public class test2 {
                     System.out.println("pls enter customer Vehicle number ");
                     String Vnum = scanner.nextLine();
                     VehicleNo[1][in]=Vnum;
-                    System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                    double num = scanner.nextDouble();
-                    NumLiters[1][in]=num;
+
+                    do{
+                        System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                        String num = scanner.nextLine();
+                        try
+                        {
+                            Double.parseDouble(num);
+                            double numD=Double.parseDouble(num);
+                            NumLiters[1][in]=numD;
+                            break;
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(num + " is not a valid input !");
+                        }
+                    }while(true);
+
                     count2+=1;
                     pump2[in]=true;
                     System.out.println("a customer "+FirstName[1][in]+" "+SecondName[1][in]+ " is added to pump  1, row " + in+ ".");
@@ -242,9 +298,23 @@ public class test2 {
                     System.out.println("pls enter customer Vehicle number ");
                     String Vnum = scanner.nextLine();
                     VehicleNo[2][in]=Vnum;
-                    System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                    double num = scanner.nextDouble();
-                    NumLiters[2][in]=num;
+
+                    do{
+                        System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                        String num = scanner.nextLine();
+                        try
+                        {
+                            Double.parseDouble(num);
+                            double numD=Double.parseDouble(num);
+                            NumLiters[2][in]=numD;
+                            break;
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(num + " is not a valid input !");
+                        }
+                    }while(true);
+
                     count3+=1;
                     pump3[in]=true;
                     System.out.println("a customer "+FirstName[2][in]+" "+SecondName[2][in]+ " is added to pump  2, row " + in+ ".");
@@ -263,9 +333,23 @@ public class test2 {
                     System.out.println("pls enter customer Vehicle number ");
                     String Vnum = scanner.nextLine();
                     VehicleNo[3][in]=Vnum;
-                    System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                    double num = scanner.nextDouble();
-                    NumLiters[3][in]=num;
+
+                    do{
+                        System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                        String num = scanner.nextLine();
+                        try
+                        {
+                            Double.parseDouble(num);
+                            double numD=Double.parseDouble(num);
+                            NumLiters[3][in]=numD;
+                            break;
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(num + " is not a valid input !");
+                        }
+                    }while(true);
+
                     count4+=1;
                     pump4[in]=true;
                     System.out.println("a customer "+FirstName[3][in]+" "+SecondName[3][in]+ " is added to pump  3, row " + in+ ".");
@@ -284,9 +368,23 @@ public class test2 {
                     System.out.println("pls enter customer Vehicle number ");
                     String Vnum = scanner.nextLine();
                     VehicleNo[4][in]=Vnum;
-                    System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                    double num = scanner.nextDouble();
-                    NumLiters[4][in]=num;
+
+                    do{
+                        System.out.println("pls enter  number of liters that the customer wants to buy? ");
+                        String num = scanner.nextLine();
+                        try
+                        {
+                            Double.parseDouble(num);
+                            double numD=Double.parseDouble(num);
+                            NumLiters[4][in]=numD;
+                            break;
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            System.out.println(num + " is not a valid input !");
+                        }
+                    }while(true);
+
                     count5+=1;
                     pump5[in]=true;
                     System.out.println("a customer "+FirstName[4][in]+" "+SecondName[4][in]+ " is added to pump  4, row " + in+ ".");
@@ -355,24 +453,28 @@ public class test2 {
                 }
 
             }
+
             for (int inLoop =0; inLoop < 6; inLoop++) {
                 if (FirstName[out][inLoop] == null) {
-                    for (int Loop =0; Loop < (QueueFirstName.size()); Loop++){
-                        if (QueueFirstName.get(Loop)!= null) {
-                                FirstName[out][inLoop]=QueueFirstName.get(Loop);
-                            QueueFirstName.remove(Loop);
+                    try {
+                        if (QueueFirstName.get(0) != null) {
+                            FirstName[out][inLoop] = QueueFirstName.get(0);
+                            QueueFirstName.remove(0);
 
-                            SecondName[out][inLoop]=QueueSecondName.get(Loop);
-                            QueueSecondName.remove(Loop);
+                            SecondName[out][inLoop] = QueueSecondName.get(0);
+                            QueueSecondName.remove(0);
 
-                            VehicleNo[out][inLoop]=QueueVehicleNo.get(Loop);
-                            QueueVehicleNo.remove(Loop);
+                            VehicleNo[out][inLoop] = QueueVehicleNo.get(0);
+                            QueueVehicleNo.remove(0);
 
-                            NumLiters[out][inLoop]=QueueNumLiters.get(Loop);
-                            QueueVehicleNo.remove(Loop);
+                            NumLiters[out][inLoop] = QueueNumLiters.get(0);
+                            QueueVehicleNo.remove(0);
                             break;
                         }
+                    }catch (IndexOutOfBoundsException nfe){
+                        break;
                     }
+
                 }
             }
             if(out==0){
@@ -454,22 +556,25 @@ public class test2 {
                     }
                     for (int inLoop =0; inLoop < 6; inLoop++) {
                         if (FirstName[out][inLoop] == null) {
-                            for (int Loop =0; Loop < (QueueFirstName.size()); Loop++){
-                                if (QueueFirstName.get(Loop)!= null) {
-                                    FirstName[out][inLoop]=QueueFirstName.get(Loop);
-                                    QueueFirstName.remove(Loop);
+                            try {
+                                if (QueueFirstName.get(0) != null) {
+                                    FirstName[out][inLoop] = QueueFirstName.get(0);
+                                    QueueFirstName.remove(0);
 
-                                    SecondName[out][inLoop]=QueueSecondName.get(Loop);
-                                    QueueSecondName.remove(Loop);
+                                    SecondName[out][inLoop] = QueueSecondName.get(0);
+                                    QueueSecondName.remove(0);
 
-                                    VehicleNo[out][inLoop]=QueueVehicleNo.get(Loop);
-                                    QueueVehicleNo.remove(Loop);
+                                    VehicleNo[out][inLoop] = QueueVehicleNo.get(0);
+                                    QueueVehicleNo.remove(0);
 
-                                    NumLiters[out][inLoop]=QueueNumLiters.get(Loop);
-                                    QueueVehicleNo.remove(Loop);
+                                    NumLiters[out][inLoop] = QueueNumLiters.get(0);
+                                    QueueVehicleNo.remove(0);
                                     break;
                                 }
+                            }catch (IndexOutOfBoundsException nfe){
+                                break;
                             }
+
                         }
                     }
                     if(out==0){

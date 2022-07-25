@@ -210,7 +210,7 @@ public class test3 {
 
                     count1+=1;
                     pump1[in]=true;
-                    System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is added to pump  0, row " + in+ ".");
+                    System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is Successfully added to pump  0, row " + in+ ".");
                     break;
                 }
             }
@@ -247,7 +247,7 @@ public class test3 {
 
                     count1+=1;
                     pump1[in]=true;
-                    System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is added to pump  0, row " + in+ ".");
+                    System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is Successfully added to pump  0, row " + in+ ".");
                     break;
                 }
             }
@@ -282,7 +282,7 @@ public class test3 {
 
                     count2+=1;
                     pump2[in]=true;
-                    System.out.println("a customer "+FirstName[1][in]+" "+SecondName[1][in]+ " is added to pump  1, row " + in+ ".");
+                    System.out.println("a customer "+FirstName[1][in]+" "+SecondName[1][in]+ " is Successfully added to pump  1, row " + in+ ".");
                     break;
                 }
             }
@@ -317,7 +317,7 @@ public class test3 {
 
                     count3+=1;
                     pump3[in]=true;
-                    System.out.println("a customer "+FirstName[2][in]+" "+SecondName[2][in]+ " is added to pump  2, row " + in+ ".");
+                    System.out.println("a customer "+FirstName[2][in]+" "+SecondName[2][in]+ " is Successfully added to pump  2, row " + in+ ".");
                     break;
                 }
             }
@@ -352,7 +352,7 @@ public class test3 {
 
                     count4+=1;
                     pump4[in]=true;
-                    System.out.println("a customer "+FirstName[3][in]+" "+SecondName[3][in]+ " is added to pump  3, row " + in+ ".");
+                    System.out.println("a customer "+FirstName[3][in]+" "+SecondName[3][in]+ " is Successfully added to pump  3, row " + in+ ".");
                     break;
                 }
             }
@@ -387,7 +387,7 @@ public class test3 {
 
                     count5+=1;
                     pump5[in]=true;
-                    System.out.println("a customer "+FirstName[4][in]+" "+SecondName[4][in]+ " is added to pump  4, row " + in+ ".");
+                    System.out.println("a customer "+FirstName[4][in]+" "+SecondName[4][in]+ " is Successfully added to pump  4, row " + in+ ".");
                     break;
                 }
             }
@@ -421,9 +421,16 @@ public class test3 {
                     VehicleNo[out][inLoop - 1] = VehicleNo[out][inLoop];
                     VehicleNo[out][inLoop] = temp;
 
+
+                    if(NumLiters[out][inLoop - 1]==null){
+                        NumLiters[out][inLoop - 1]=0.0;
+                    }
                     double num = NumLiters[out][inLoop - 1];
                     NumLiters[out][inLoop - 1] = NumLiters[out][inLoop];
                     NumLiters[out][inLoop] = num;
+                    if(NumLiters[out][inLoop]==0.0){
+                        NumLiters[out][inLoop]=null;
+                    }
 
                     if(out==0){
                         Boolean cho = pump1[inLoop - 1];
@@ -527,9 +534,16 @@ public class test3 {
                         VehicleNo[out][inLoop - 1] = VehicleNo[out][inLoop];
                         VehicleNo[out][inLoop] = temp;
 
+
+                        if(NumLiters[out][inLoop - 1]==null){
+                            NumLiters[out][inLoop - 1]=0.0;
+                        }
                         double num = NumLiters[out][inLoop - 1];
                         NumLiters[out][inLoop - 1] = NumLiters[out][inLoop];
                         NumLiters[out][inLoop] = num;
+                        if(NumLiters[out][inLoop]==0.0){
+                            NumLiters[out][inLoop]=null;
+                        }
 
                         if(out==0){
                             Boolean cho = pump1[inLoop - 1];
