@@ -15,21 +15,27 @@ public class test4 {
     public static Boolean[] pump3 = new Boolean[6];
     public static Boolean[] pump4 = new Boolean[6];
     public static Boolean[] pump5 = new Boolean[6];
+
+    //array used to store first name and others
     public static String[][] FirstName = new String[5][6];
     public static String[][] SecondName = new String[5][6];
     public static String[][] VehicleNo = new String[5][6];
     public static Double[][] NumLiters = new Double[5][6];
 
+    //This is created because queue don't have a limit, so it must have infinite amount of inputs so arraylist is used
     public  static ArrayList<String> QueueFirstName= new ArrayList<String>();
     public  static ArrayList<String> QueueSecondName= new ArrayList<String>();
     public  static ArrayList<String> QueueVehicleNo= new ArrayList<String>();
     public  static ArrayList<Double> QueueNumLiters= new ArrayList<Double>();
+
+    //low array is set to find the array with the lowest number of customers
     public static int low[] = new int[5];
 
     public static Scanner scanner = new Scanner(System.in);
 
     public static int stock = 6600;
 
+    //count is used to store the length of the array, so it can be later used.
     public static int count1 = 0;
     public static int count2 = 0;
     public static int count3 = 0;
@@ -38,16 +44,17 @@ public class test4 {
 
     public static boolean loop = true;
 
+
     public static void main(String[] args){
-        menu();
+
         LOOP();
     }
 
     public  static void LOOP() {
-
-
+        menu();
         System.out.println("\n pls choose an option ");
-        String choice = scanner.nextLine();
+        String choice = scanner.next();
+//each options relative  function  is called via a case loop
         switch (valid(choice)) {
             case 0 -> VFQ();
             case 1 -> VEQ();
@@ -61,16 +68,20 @@ public class test4 {
             case 9 -> AFS();
             case 10-> IFQ();
             case 11 -> EXT();
+//if the user input something other than the given options a message will pop up informing about it
             case 100 -> System.out.println("\n you have selected a wrong option !");
-
         }
+//this is used to exit the loop
         if(loop){
+            //infinite times of repetition unit loop is false (it means when 999 or EXT is entered)
             LOOP();
         }else{
             System.out.println("\n Thank you for using this program ");
         }
+        scanner.next();
     }
 
+    //menu
     public  static void menu() {
         System.out.println("---------------MENU--------------\n" +
                 "   100 or VFQ: View all Fuel Queues.\n" +
@@ -89,7 +100,8 @@ public class test4 {
 
     }
 
-
+//this array choice1 is stored with each input that the user can input ,so we can validate with the input and the elements in choice1 array
+//repeats until the length of the array and if the choice is not found it outputs 100
     public static Integer valid(String choice) {
         String[][] choice1 = {{"100", "101", "102", "103", "104", "105", "106", "107", "108", "109","110", "999"}, {"VFQ", "VEQ", "ACQ", "RCQ", "PCQ", "VCS", "SPD", "LPD", "STK", "AFS","IFQ", "EXT"}};
         int num = 100;
@@ -103,6 +115,8 @@ public class test4 {
         }
         return num;
     }
+
+//View all fuel queues , it will output empty if elements is null and if there is data in the element it will output that
     public static void VFQ() {
 
         int out = 0;
@@ -120,6 +134,7 @@ public class test4 {
         }
     }
 
+//it will output empty if elements is null
     public static void VEQ() {
         int out = 0;
         int in = 0;
@@ -134,28 +149,62 @@ public class test4 {
         }
     }
 
+//adding a customer to the queue.
     public static void ACQ() {
 
         int in = 0;
         int out = 0;
+//sort low will find the pump queue with the lowest no of customers
         SortLow();
         System.out.println("Add customer to a Queue");
+//if the queue is full the customer is added to the waiting list (if the queue is full the length of the array must be 6 )
         if(count1==6 && count2==6 && count3==6 && count4==6 && count5==6) {
             System.out.println("All the pumps are full");
             System.out.println("You are been added to the waiting list.");
             System.out.println("pls enter customer First name");
-            String name = scanner.nextLine();
+            String name;
+//this is validation if the user didn't input  it won't let the  user from going into the next input until the user enters an input
+            do{
+                if(scanner.hasNext()){
+                    name = scanner.next();
+                    break;
+                }else{
+                    scanner.next();
+                }
+            }while(true);
             QueueFirstName.add(name);
+//this is validation if the user didn't input  it won't let the  user from going into the next input until the user enters an input
             System.out.println("pls enter customer Second name");
-            name = scanner.nextLine();
+            do{
+                if(scanner.hasNext()){
+                    name = scanner.next();
+                    break;
+
+                }else{
+                    scanner.next();
+
+                }
+            }while(true);
             QueueSecondName.add(name);
+//this is validation if the user didn't input  it won't let the  user from going into the next input until the user enters an input
             System.out.println("pls enter customer Vehicle number ");
-            String Vnum = scanner.nextLine();
+            String Vnum;
+            do{
+                if(scanner.hasNext()){
+                    Vnum = scanner.next();
+                    break;
+
+                }else{
+                    scanner.next();
+
+                }
+            }while(true);
             QueueVehicleNo.add(Vnum);
 
+//This to validate whether the user has input a double number
             do{
                 System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                String num = scanner.nextLine();
+                String num = scanner.next();
                 try
                 {
                     Double.parseDouble(num);
@@ -166,16 +215,12 @@ public class test4 {
                 catch (NumberFormatException e)
                 {
                     System.out.println(num + " is not a valid input !");
+                    scanner.next();
                 }
             }while(true);
-
+//the size is minus one coz the size  starts from  1, but the array starts from 0
             int size=QueueFirstName.size()-1;
             System.out.println("a customer "+QueueFirstName.get(size)+" "+QueueFirstName.get(size)+ " is added to waiting list in "+size+" position.");
-
-
-
-
-
 
 
 
@@ -183,18 +228,49 @@ public class test4 {
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[0][in], null)) {
                     System.out.println("pls enter customer First name");
-                    String name = scanner.nextLine();
+                    String name;
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     FirstName[0][in]=name;
+
                     System.out.println("pls enter customer Second name");
-                    name = scanner.nextLine();
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     SecondName[0][in]=name;
+
                     System.out.println("pls enter customer Vehicle number ");
-                    String Vnum = scanner.nextLine();
+                    String Vnum;
+                    do{
+                        if(scanner.hasNext()){
+                            Vnum = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     VehicleNo[0][in]=Vnum;
 
                     do{
                         System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                        String num = scanner.nextLine();
+                        String num = scanner.next();
                         try
                         {
                             Double.parseDouble(num);
@@ -205,9 +281,10 @@ public class test4 {
                         catch (NumberFormatException e)
                         {
                             System.out.println(num + " is not a valid input !");
+                            scanner.next();
                         }
                     }while(true);
-
+//count is add one to increase by one because a customer is added
                     count1+=1;
                     pump1[in]=true;
                     System.out.println("a customer "+FirstName[0][in]+" "+SecondName[0][in]+ " is Successfully added to pump  0, row " + in+ ".");
@@ -220,18 +297,49 @@ public class test4 {
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[0][in], null)) {
                     System.out.println("pls enter customer First name");
-                    String name = scanner.nextLine();
+                    String name;
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     FirstName[0][in]=name;
+
                     System.out.println("pls enter customer Second name");
-                    name = scanner.nextLine();
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     SecondName[0][in]=name;
+
                     System.out.println("pls enter customer Vehicle number ");
-                    String Vnum = scanner.nextLine();
+                    String Vnum;
+                    do{
+                        if(scanner.hasNext()){
+                            Vnum = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     VehicleNo[0][in]=Vnum;
 
                     do{
                         System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                        String num = scanner.nextLine();
+                        String num = scanner.next();
                         try
                         {
                             Double.parseDouble(num);
@@ -242,6 +350,7 @@ public class test4 {
                         catch (NumberFormatException e)
                         {
                             System.out.println(num + " is not a valid input !");
+                            scanner.next();
                         }
                     }while(true);
 
@@ -251,22 +360,54 @@ public class test4 {
                     break;
                 }
             }
+
         }else if(count2==low[0]){
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[1][in], null)) {
                     System.out.println("pls enter customer First name");
-                    String name = scanner.nextLine();
+                    String name;
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     FirstName[1][in]=name;
+
                     System.out.println("pls enter customer Second name");
-                    name = scanner.nextLine();
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     SecondName[1][in]=name;
+
                     System.out.println("pls enter customer Vehicle number ");
-                    String Vnum = scanner.nextLine();
+                    String Vnum;
+                    do{
+                        if(scanner.hasNext()){
+                            Vnum = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     VehicleNo[1][in]=Vnum;
 
                     do{
                         System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                        String num = scanner.nextLine();
+                        String num = scanner.next();
                         try
                         {
                             Double.parseDouble(num);
@@ -277,6 +418,7 @@ public class test4 {
                         catch (NumberFormatException e)
                         {
                             System.out.println(num + " is not a valid input !");
+                            scanner.next();
                         }
                     }while(true);
 
@@ -290,18 +432,49 @@ public class test4 {
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[2][in], null)) {
                     System.out.println("pls enter customer First name");
-                    String name = scanner.nextLine();
+                    String name;
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     FirstName[2][in]=name;
+
                     System.out.println("pls enter customer Second name");
-                    name = scanner.nextLine();
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     SecondName[2][in]=name;
+
                     System.out.println("pls enter customer Vehicle number ");
-                    String Vnum = scanner.nextLine();
+                    String Vnum;
+                    do{
+                        if(scanner.hasNext()){
+                            Vnum = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     VehicleNo[2][in]=Vnum;
 
                     do{
                         System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                        String num = scanner.nextLine();
+                        String num = scanner.next();
                         try
                         {
                             Double.parseDouble(num);
@@ -312,6 +485,7 @@ public class test4 {
                         catch (NumberFormatException e)
                         {
                             System.out.println(num + " is not a valid input !");
+                            scanner.next();
                         }
                     }while(true);
 
@@ -325,18 +499,49 @@ public class test4 {
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[3][in], null)) {
                     System.out.println("pls enter customer First name");
-                    String name = scanner.nextLine();
+                    String name;
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     FirstName[3][in]=name;
+
                     System.out.println("pls enter customer Second name");
-                    name = scanner.nextLine();
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     SecondName[3][in]=name;
+
                     System.out.println("pls enter customer Vehicle number ");
-                    String Vnum = scanner.nextLine();
+                    String Vnum;
+                    do{
+                        if(scanner.hasNext()){
+                            Vnum = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     VehicleNo[3][in]=Vnum;
 
                     do{
                         System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                        String num = scanner.nextLine();
+                        String num = scanner.next();
                         try
                         {
                             Double.parseDouble(num);
@@ -347,6 +552,7 @@ public class test4 {
                         catch (NumberFormatException e)
                         {
                             System.out.println(num + " is not a valid input !");
+                            scanner.next();
                         }
                     }while(true);
 
@@ -360,18 +566,49 @@ public class test4 {
             for (in = 0; in < 6; in++) {
                 if (Objects.equals(FirstName[4][in], null)) {
                     System.out.println("pls enter customer First name");
-                    String name = scanner.nextLine();
+                    String name;
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     FirstName[4][in]=name;
+
                     System.out.println("pls enter customer Second name");
-                    name = scanner.nextLine();
+                    do{
+                        if(scanner.hasNext()){
+                            name = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     SecondName[4][in]=name;
+
                     System.out.println("pls enter customer Vehicle number ");
-                    String Vnum = scanner.nextLine();
+                    String Vnum;
+                    do{
+                        if(scanner.hasNext()){
+                            Vnum = scanner.next();
+                            break;
+
+                        }else{
+                            scanner.next();
+
+                        }
+                    }while(true);
                     VehicleNo[4][in]=Vnum;
 
                     do{
                         System.out.println("pls enter  number of liters that the customer wants to buy? ");
-                        String num = scanner.nextLine();
+                        String num = scanner.next();
                         try
                         {
                             Double.parseDouble(num);
@@ -382,6 +619,7 @@ public class test4 {
                         catch (NumberFormatException e)
                         {
                             System.out.println(num + " is not a valid input !");
+                            scanner.next();
                         }
                     }while(true);
 
@@ -393,11 +631,16 @@ public class test4 {
             }
         }
     }
+//the adding customer is finished
+//function to remove customer from a specific location
 
     public static void RCQ() {
         System.out.println("Remove a customer from a Queue. (From a specific location)");
         int out = 0;
         int in = 0;
+//the location is asked from the user if there is no one in that location a message is sent to inform that no one is there
+//if there is the location is turned null
+
         System.out.println("pls enter from which row you want to remove(0,1,2,3,4)");
         out = scanner.nextInt();
         System.out.println("pls enter from which column you want to remove(0,1,2,3,4,5)");
@@ -407,6 +650,7 @@ public class test4 {
         } else {
             FirstName[out][in] = null;
             System.out.println("pump " + out + ",row " + in + " customer has been removed.");
+//bubble sort is done here so that the removed slot is moved to the end of the queue and the customers are sent front
             for (int inLoop = in + 1; inLoop < 6; inLoop++) {
                 if (FirstName[out][inLoop] != null) {
                     String temp = FirstName[out][inLoop - 1];
@@ -421,7 +665,8 @@ public class test4 {
                     VehicleNo[out][inLoop - 1] = VehicleNo[out][inLoop];
                     VehicleNo[out][inLoop] = temp;
 
-
+//null is not valid in double so if the num is null it is assign 0.0 and then the bubble sort is done
+//this is because the num variable is double (like temp)
                     if(NumLiters[out][inLoop - 1]==null){
                         NumLiters[out][inLoop - 1]=0.0;
                     }
@@ -431,7 +676,7 @@ public class test4 {
                     if(NumLiters[out][inLoop]==0.0){
                         NumLiters[out][inLoop]=null;
                     }
-
+//the pump arrays are done the same thing(bubble sort)
                     if(out==0){
                         Boolean cho = pump1[inLoop - 1];
                         pump1[inLoop - 1] = pump1[inLoop];
@@ -460,30 +705,7 @@ public class test4 {
                 }
 
             }
-
-            for (int inLoop =0; inLoop < 6; inLoop++) {
-                if (FirstName[out][inLoop] == null) {
-                    try {
-                        if (QueueFirstName.get(0) != null) {
-                            FirstName[out][inLoop] = QueueFirstName.get(0);
-                            QueueFirstName.remove(0);
-
-                            SecondName[out][inLoop] = QueueSecondName.get(0);
-                            QueueSecondName.remove(0);
-
-                            VehicleNo[out][inLoop] = QueueVehicleNo.get(0);
-                            QueueVehicleNo.remove(0);
-
-                            NumLiters[out][inLoop] = QueueNumLiters.get(0);
-                            QueueVehicleNo.remove(0);
-                            break;
-                        }
-                    }catch (IndexOutOfBoundsException nfe){
-                        break;
-                    }
-
-                }
-            }
+//count is removed
             if(out==0){
                 count1-=1;
             }else if(out==1){
@@ -502,10 +724,11 @@ public class test4 {
         }
 
     }
-
+//same thing as RCQ except the first customer in the queue is removed
     public static void PCQ() {
         System.out.println("Remove a served customer.");
         int out = 0;
+
         if(stock==0){
             System.out.println("NO stocks remaining");
         }else {
@@ -519,6 +742,8 @@ public class test4 {
                     VehicleNo[out][in] = null;
                     stock -= NumLiters[out][in];
                     NumLiters[out][in] = null;
+
+
 
                     for (int inLoop = in+ 1; inLoop < 6; inLoop++) {
 
@@ -568,6 +793,9 @@ public class test4 {
                         }
 
                     }
+//this is done if there is customers waiting in the waiting list
+//when the first customer in the waiting list is added to the queue the position of the customer in the waiting list is removed
+//in arraylist when the first customer is removed (0) the second customer in the waiting list become (0)
                     for (int inLoop =0; inLoop < 6; inLoop++) {
                         if (FirstName[out][inLoop] == null) {
                             try {
@@ -603,37 +831,63 @@ public class test4 {
                         count5-=1;
                     }
 
+                    break;
 
-                } else {
+
+
+                } else if(in==5) {
                     System.out.println("pump " + out + " has no customers.");
+
                 }
-                break;
+
             }
             if(stock<=500){
                 System.out.println("Only "+stock+" liters stocks remaining");
             }
-        }
-    }
 
+        }
+
+    }
+//this function shows the queue in alphabetical order
     public static void VCS() {
         int out = 0;
         int in = 0;
         int count=0;
+//2 temporally arrays has been introduced
+
+        String[][] Alphabet = new String[5][6];
+        String[][] Alphabet2 = new String[5][6];
+
+
+//they are assign the first name and second name
+        for (int outLoop = 0; outLoop < 5; outLoop++) {
+            for (int inLoop = 0; inLoop < 6; inLoop++) {
+                Alphabet[outLoop][inLoop]=FirstName[outLoop][inLoop];
+                Alphabet2[outLoop][inLoop]=SecondName[outLoop][inLoop];
+            }
+        }
+//here the compare function is used instead of sort
+//if the .compare to is greater than 0 it is moved forward
+//like bubble sort
         //0
         boolean fo=true;
         while(fo){
-            for (in= 0;in <FirstName.length; in++){
-                if(FirstName[0][in+1]!=null ){
-                    if(FirstName[0][in].compareTo(FirstName[0][in+1])>0){
+            for (in= 0;in <Alphabet.length; in++){
+                if(Alphabet[0][in+1]!=null ){
+                    if(Alphabet[0][in].compareTo(Alphabet[0][in+1])>0){
 
-                        String temp = FirstName[0][in];
-                        FirstName[0][in] =FirstName[0][in+1];
-                        FirstName[0][in+1]=temp;
+                        String temp = Alphabet[0][in];
+                        Alphabet[0][in] =Alphabet[0][in+1];
+                        Alphabet[0][in+1]=temp;
+
+                        temp = Alphabet2[0][in];
+                        Alphabet2[0][in] =Alphabet2[0][in+1];
+                        Alphabet2[0][in+1]=temp;
                     }
                 }
                 count++;
             }
-            if(FirstName.length*FirstName.length==count){
+            if(Alphabet.length*Alphabet.length==count){
                 fo=false;
             }
         }
@@ -643,18 +897,22 @@ public class test4 {
         count=0;
         fo=true;
         while(fo){
-            for (in= 0;in <FirstName.length; in++){
-                if(FirstName[1][in+1]!=null ){
-                    if(FirstName[1][in].compareTo(FirstName[1][in+1])>0){
+            for (in= 0;in <Alphabet.length; in++){
+                if(Alphabet[1][in+1]!=null ){
+                    if(Alphabet[1][in].compareTo(Alphabet[1][in+1])>0){
 
-                        String temp = FirstName[1][in];
-                        FirstName[1][in] =FirstName[1][in+1];
-                        FirstName[1][in+1]=temp;
+                        String temp = Alphabet[1][in];
+                        Alphabet[1][in] =Alphabet[1][in+1];
+                        Alphabet[1][in+1]=temp;
+
+                        temp = Alphabet2[1][in];
+                        Alphabet2[1][in] =Alphabet2[1][in+1];
+                        Alphabet2[1][in+1]=temp;
                     }
                 }
                 count++;
             }
-            if(FirstName.length*FirstName.length==count){
+            if(Alphabet.length*Alphabet.length==count){
                 fo=false;
             }
         }
@@ -664,18 +922,22 @@ public class test4 {
         count=0;
         fo=true;
         while(fo){
-            for (in= 0;in <FirstName.length; in++){
-                if(FirstName[2][in+1]!=null ){
-                    if(FirstName[2][in].compareTo(FirstName[2][in+1])>0){
+            for (in= 0;in <Alphabet.length; in++){
+                if(Alphabet[2][in+1]!=null ){
+                    if(Alphabet[2][in].compareTo(Alphabet[2][in+1])>0){
 
-                        String temp = FirstName[2][in];
-                        FirstName[2][in] =FirstName[2][in+1];
-                        FirstName[2][in+1]=temp;
+                        String temp = Alphabet[2][in];
+                        Alphabet[2][in] =Alphabet[2][in+1];
+                        Alphabet[2][in+1]=temp;
+
+                        temp = Alphabet2[2][in];
+                        Alphabet2[2][in] =Alphabet2[2][in+1];
+                        Alphabet2[2][in+1]=temp;
                     }
                 }
                 count++;
             }
-            if(FirstName.length*FirstName.length==count){
+            if(Alphabet.length*Alphabet.length==count){
                 fo=false;
             }
         }
@@ -685,18 +947,22 @@ public class test4 {
         count=0;
         fo=true;
         while(fo){
-            for (in= 0;in <FirstName.length; in++){
-                if(FirstName[3][in+1]!=null ){
-                    if(FirstName[3][in].compareTo(FirstName[3][in+1])>0){
+            for (in= 0;in <Alphabet.length; in++){
+                if(Alphabet[3][in+1]!=null ){
+                    if(Alphabet[3][in].compareTo(Alphabet[3][in+1])>0){
 
-                        String temp = FirstName[3][in];
-                        FirstName[3][in] =FirstName[3][in+1];
-                        FirstName[3][in+1]=temp;
+                        String temp = Alphabet[3][in];
+                        Alphabet[3][in] =Alphabet[3][in+1];
+                        Alphabet[3][in+1]=temp;
+
+                        temp = Alphabet2[3][in];
+                        Alphabet2[3][in] =Alphabet2[3][in+1];
+                        Alphabet2[3][in+1]=temp;
                     }
                 }
                 count++;
             }
-            if(FirstName.length*FirstName.length==count){
+            if(Alphabet.length*Alphabet.length==count){
                 fo=false;
             }
         }
@@ -706,27 +972,40 @@ public class test4 {
         count=0;
         fo=true;
         while(fo){
-            for (in= 0;in <FirstName.length; in++){
-                if(FirstName[4][in+1]!=null ){
-                    if(FirstName[4][in].compareTo(FirstName[4][in+1])>0){
+            for (in= 0;in <Alphabet.length; in++){
+                if(Alphabet[4][in+1]!=null ){
+                    if(Alphabet[4][in].compareTo(Alphabet[4][in+1])>0){
 
-                        String temp = FirstName[4][in];
-                        FirstName[4][in] =FirstName[4][in+1];
-                        FirstName[4][in+1]=temp;
+                        String temp = Alphabet[4][in];
+                        Alphabet[4][in] =Alphabet[4][in+1];
+                        Alphabet[4][in+1]=temp;
+
+                        temp = Alphabet2[4][in];
+                        Alphabet2[4][in] =Alphabet2[4][in+1];
+                        Alphabet2[4][in+1]=temp;
                     }
                 }
                 count++;
             }
-            if(FirstName.length*FirstName.length==count){
+            if(Alphabet.length*Alphabet.length==count){
                 fo=false;
             }
         }
+//the newly sorted array is displayed
+        for (int outLoop = 0; outLoop < 5; outLoop++) {
+            for (int inLoop = 0; inLoop < 6; inLoop++) {
+                if (Alphabet[outLoop][inLoop] == null) {
+                    System.out.println("pump " + outLoop + ",row " + inLoop + " : empty");
 
-
-
-
+                } else  {
+                    System.out.println("pump " + outLoop + ",row " + inLoop + " : "+Alphabet[outLoop][inLoop]+" "+Alphabet2[outLoop][inLoop]);
+                }
+            }
+        }
     }
 
+ //store data into a file
+ //a txt file is created and then the data is written into it
     public static void SPD() {
         System.out.println("Store Program Data into file.");
         int out=0;
@@ -759,6 +1038,9 @@ public class test4 {
 
     }
 
+//load data from a file
+//searches for a file name if the name is not available a message is given
+//if the filename is available the content of the filename is shown
     public static void LPD() {
         System.out.println("Load Program Data from file.");
         System.out.println("please enter the file name ");
@@ -777,6 +1059,7 @@ public class test4 {
 
     }
 
+//shows the remaining stock
     public static void STK() {
         System.out.println("View Remaining Fuel Stock.");
         System.out.println(stock);
@@ -789,6 +1072,8 @@ public class test4 {
         stock+=addStock;
 
     }
+
+//shows the income per queue
     public static void IFQ() {
 
         for( int out=0;out<5;out++){
@@ -804,6 +1089,8 @@ public class test4 {
 
 
 
+//exits the program
+//the loop variable is turned false
 
     public static void EXT() {
         System.out.println("Exit the Program.");
@@ -811,6 +1098,9 @@ public class test4 {
     }
 
 
+//this function is used to sort the lengths of each queue from lowest to the largest
+//each count with a number (eg: count1)  contains a length of a queue (eg: count1=queue0)
+//each count is assign a position in the low array
 
     public static void SortLow() {
         int count = 0;
@@ -821,6 +1111,7 @@ public class test4 {
         low[3] = count4;
         low[4] = count5;
         boolean fo = true;
+//then bubble sort is done to  arrange the array from the lowest count value to the largest
         while (fo) {
             if(low[0]>low[1]){
                 temp = low[0];
@@ -847,19 +1138,7 @@ public class test4 {
             }
 
         }
-        System.out.println(low[0]);
-        System.out.println(low[1]);
-        System.out.println(low[2]);
-        System.out.println(low[3]);
-        System.out.println(low[4]);
-
     }
-
-
-
-
-
-
 
 }
 
